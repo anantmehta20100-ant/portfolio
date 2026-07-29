@@ -1,9 +1,8 @@
 import importlib
 
 import app as app_module
-import app.content.publication as publication
-
 from app import create_app
+from app.content import publication
 from app.content.publication import (
     RESUME_PUBLISHED,
     TRACKSENSE_REPORT_PATH,

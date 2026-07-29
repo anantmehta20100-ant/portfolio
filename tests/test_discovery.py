@@ -7,7 +7,6 @@ import pytest
 
 from app import create_app
 
-
 REQUIRED_ROUTES = (
     "/",
     "/projects",
@@ -229,6 +228,11 @@ def test_invalid_canonical_environment_fails_fast(monkeypatch, invalid_origin):
 
     with pytest.raises(ValueError, match="CANONICAL_BASE_URL"):
         create_app()
+
+
+def test_non_string_canonical_config_fails_fast():
+    with pytest.raises(TypeError, match="CANONICAL_BASE_URL"):
+        create_app({"CANONICAL_BASE_URL": 8000})
 
 
 def test_social_preview_and_favicon_assets_resolve(client, parse_html):

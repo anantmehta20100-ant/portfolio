@@ -4,7 +4,6 @@ import pytest
 
 from app import create_app
 
-
 VOID_ELEMENTS = {
     "area",
     "base",

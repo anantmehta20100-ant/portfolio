@@ -1,13 +1,11 @@
 import re
 
 import pytest
-
 from flask import Flask
 
 from app import create_app
 from app.content.portfolio import PERSON
 from app.content.projects import PROJECTS
-
 
 REQUIRED_ROUTES = (
     "/",
@@ -500,14 +498,18 @@ def test_public_pages_exclude_unsupported_claims(client, parse_html):
             "unpaid internship",
         ),
         (
-            '<html><head><meta content="Historically strong result"></head>'
-            "<body></body></html>",
+            (
+                '<html><head><meta content="Historically strong result"></head>'
+                "<body></body></html>"
+            ),
             "historically strong result",
         ),
         (
-            '<html><head><script type="application/ld+json">'
-            '{"sameAs":["https://linkedin.com/in/private"]}'
-            "</script></head><body></body></html>",
+            (
+                '<html><head><script type="application/ld+json">'
+                '{"sameAs":["https://linkedin.com/in/private"]}'
+                "</script></head><body></body></html>"
+            ),
             "linkedin",
         ),
     ],

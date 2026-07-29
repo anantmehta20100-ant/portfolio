@@ -14,7 +14,7 @@ def _normalize_canonical_base_url(value: object) -> str:
     if value is None:
         return ""
     if not isinstance(value, str):
-        raise ValueError("CANONICAL_BASE_URL must be a string HTTP(S) origin")
+        raise TypeError("CANONICAL_BASE_URL must be a string HTTP(S) origin")
 
     origin = value.strip()
     if not origin:
@@ -22,7 +22,8 @@ def _normalize_canonical_base_url(value: object) -> str:
 
     parsed = urlsplit(origin)
     try:
-        parsed.port
+        # urlsplit defers port validation; reading the property is what raises
+        _ = parsed.port
     except ValueError as error:
         raise ValueError(
             "CANONICAL_BASE_URL must be a valid HTTP(S) origin"

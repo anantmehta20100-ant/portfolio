@@ -1,6 +1,6 @@
-from pathlib import Path
 import re
-
+from itertools import pairwise
+from pathlib import Path
 
 ROOT = Path(__file__).parents[1]
 STATIC = ROOT / "app" / "static"
@@ -292,8 +292,7 @@ def test_required_pages_have_logical_heading_order(client, parse_html):
         assert levels.count(1) == 1, f"{path} must have exactly one h1"
         assert levels[0] == 1, f"{path} must start its main heading outline with h1"
         assert all(
-            current <= previous + 1
-            for previous, current in zip(levels, levels[1:])
+            current <= previous + 1 for previous, current in pairwise(levels)
         ), f"{path} skips a heading level: {levels}"
 
 
