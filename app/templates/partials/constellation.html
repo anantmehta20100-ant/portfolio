@@ -1,0 +1,43 @@
+<div class="constellation" data-constellation>
+  <div class="constellation__stage">
+    <svg class="constellation__paths" viewBox="0 0 920 520" role="img" aria-labelledby="constellation-title constellation-description">
+      <title id="constellation-title">My project system</title>
+      <desc id="constellation-description">Three connected projects surround a central portfolio node.</desc>
+      <ellipse cx="460" cy="260" rx="325" ry="185"></ellipse>
+      <path data-path="tracksense" d="M380 220 L225 145"></path>
+      <path data-path="forebid" d="M540 220 L700 145"></path>
+      <path data-path="engram-pipeline" d="M535 307 L690 378"></path>
+    </svg>
+    <div class="constellation__core">
+      <span>ANANT NITAI MEHTA</span>
+      <strong>Portfolio system</strong>
+      <small>AI · ROBOTICS · ENGINEERING</small>
+    </div>
+    {% for key, project in projects.items() %}
+    <a class="constellation__node constellation__node--{{ key }}" href="/projects/{{ project.slug }}" data-node="{{ key }}">
+      <span>{{ project.role }}</span>
+      <strong>{{ project.name }}</strong>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="constellation__concepts" aria-label="Project engineering concepts">
+    <section data-concept="tracksense">
+      <h3>Possible relative-risk path</h3>
+      <p>Nut butter jar → cutlery → bread → plate</p>
+      <small>This illustrates possible propagation, not confirmed contamination.</small>
+    </section>
+    <section data-concept="forebid">
+      <h3>Trust-aware market context</h3>
+      <p>Market snapshot · Trust weighting · Agent reputation · Outlier filtering · Fair price</p>
+    </section>
+    <section data-concept="engram-pipeline">
+      <h3>Reviewable public-source research</h3>
+      <p>Public company sources · Seniority filtering · Source verification · Human review · Re-runnable pipeline</p>
+    </section>
+  </div>
+</div>
+<div class="constellation-fallback">
+  {% for key, project in projects.items() %}
+  <a href="/projects/{{ project.slug }}"><strong>{{ project.name }}</strong><span>{{ project.description }}</span></a>
+  {% endfor %}
+</div>

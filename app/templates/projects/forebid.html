@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% from "components/media.html" import media_placeholder %}
+{% from "components/ui.html" import technology_tags, status_badge %}
+{% block content %}
+<article class="case-study case-study--forebid">
+  <header class="case-hero reading-shell"><p class="eyebrow">Autonomous-agent market context</p><h1>{{ project.name }}</h1><p class="case-deck">{{ project.description }}</p><div class="case-meta"><span>{{ project.role }} · {{ project.team }}</span>{{ status_badge(project.status) }}</div></header>
+  <section class="reading-shell"><h2>Overview</h2><p>ForeBid gives a buying agent a market snapshot before it commits to an offer.</p>{{ media_placeholder("ForeBid interface image coming soon") }}</section>
+  <section class="reading-shell"><h2>Problem</h2><p>An autonomous agent can negotiate more responsibly when it understands the visible market rather than reacting to one seller in isolation.</p></section>
+  <section class="reading-shell"><h2>Why autonomous agents need market context</h2><p>Price alone is insufficient. Agent reputation, observation trust, dispersion, and outliers affect how useful a quoted market price is.</p></section>
+  <section class="reading-shell"><h2>Trust-aware pricing</h2><p>ForeBid combines deterministic snapshot computation with trust-weighted aggregation.</p></section>
+  <section class="reading-shell"><h2>Seven market signals</h2>
+    <figure class="market-figure">
+      <svg viewBox="0 0 760 280" role="img" aria-labelledby="market-title market-desc">
+        <title id="market-title">Illustrative ForeBid market signals</title>
+        <desc id="market-desc">Seven static sample points show a filtered fair-price line and one outlier.</desc>
+        <path class="chart-grid" d="M60 40H720M60 100H720M60 160H720M60 220H720"/>
+        <path class="chart-line" d="M70 195C160 175 205 168 285 150S430 116 520 105 645 82 710 72"/>
+        <g class="chart-points"><circle cx="90" cy="190" r="6"/><circle cx="190" cy="169" r="6"/><circle cx="290" cy="151" r="6"/><circle cx="390" cy="132" r="6"/><circle cx="490" cy="109" r="6"/><circle cx="590" cy="95" r="6"/><circle class="chart-outlier" cx="640" cy="215" r="7"/></g>
+      </svg>
+      <figcaption>Illustrative interface data — not live financial data.</figcaption>
+    </figure>
+  </section>
+  <section class="reading-shell"><h2>Byzantine outlier filtering</h2><p>Outlier handling limits the influence of observations that diverge sharply from the trusted market context.</p></section>
+  <section class="reading-shell"><h2>Architecture</h2><ol class="architecture-flow"><li>AgentFacts inputs</li><li>Trust weighting</li><li>Outlier filtering</li><li>Seven signals</li><li>Fair-price snapshot</li></ol></section>
+  <section class="reading-shell"><h2>Current prototype</h2><ul>{% for item in project.shipped %}<li>{{ item }}</li>{% endfor %}</ul><a class="button button-primary" href="{{ project.live_demo }}" target="_blank" rel="noreferrer">Open live demo <span class="sr-only">(opens in a new tab)</span></a></section>
+  <section class="reading-shell"><h2>Production roadmap</h2><p>These items are planned and are not presented as shipped functionality.</p><ul>{% for item in project.planned %}<li>{{ item }}</li>{% endfor %}</ul></section>
+  <section class="reading-shell"><h2>Four-person collaboration</h2><p>ForeBid was created by a four-person team. I contributed as a core developer and co-creator.</p></section>
+  <section class="reading-shell"><h2>Lessons learned</h2><p>The project reinforced the importance of separating deterministic prototype assumptions from production data, trust, and integration requirements.</p>{{ technology_tags(project.technologies) }}</section>
+</article>
+{% endblock %}

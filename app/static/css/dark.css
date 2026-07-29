@@ -1,0 +1,216 @@
+.theme-dark {
+  background-image:
+    linear-gradient(rgba(115, 215, 230, .055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(115, 215, 230, .055) 1px, transparent 1px),
+    radial-gradient(circle at 74% 18%, rgba(167, 139, 250, .13), transparent 25%);
+  background-size: 30px 30px, 30px 30px, auto;
+  /* custom-cursor palette: violet signal reads on the dark ground */
+  --cursor-color: var(--signal);
+  --cursor-ring: rgba(167, 139, 250, .55);
+  --cursor-label: var(--void);
+}
+
+.theme-dark .site-header {
+  color: var(--ink-on-dark);
+  background: rgba(8, 9, 13, .86);
+  border-color: var(--line-dark);
+  backdrop-filter: blur(18px);
+}
+
+.theme-dark .site-header nav a,
+.theme-dark .site-footer,
+.theme-dark .hero-copy,
+.theme-dark .index-hero > p:last-child {
+  color: var(--muted-on-dark);
+}
+
+.theme-dark .site-header nav a:hover,
+.theme-dark .site-header nav a[aria-current="page"],
+.theme-dark .site-header nav a[aria-current="location"] {
+  color: var(--ink-on-dark);
+}
+
+.theme-dark .site-footer,
+.theme-dark .contact-band {
+  border-color: var(--line-dark);
+}
+
+.theme-dark .eyebrow {
+  color: var(--cyan);
+}
+
+.theme-dark .project-preview {
+  border-color: var(--line-dark);
+}
+
+.theme-dark .shell + .shell {
+  border-top: 1px solid var(--line-dark);
+}
+
+.hero {
+  display: grid;
+  align-content: center;
+  min-height: 82vh;
+}
+
+.hero h1 {
+  max-width: 10ch;
+  margin-bottom: var(--space-4);
+}
+
+.hero-copy {
+  max-width: 62ch;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+}
+
+.index-hero {
+  display: grid;
+  align-content: end;
+  min-height: 65vh;
+}
+
+.index-hero h1 {
+  max-width: 11ch;
+}
+
+.index-hero > p:last-child {
+  max-width: 54ch;
+  font-size: 1.1rem;
+}
+
+.constellation {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.constellation__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 920 / 520;
+}
+
+.constellation__paths {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--line-dark);
+  vector-effect: non-scaling-stroke;
+}
+
+.constellation__paths path[data-active="true"] {
+  stroke: var(--signal);
+}
+
+.constellation__core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-content: center;
+  width: 220px;
+  aspect-ratio: 1;
+  text-align: center;
+  background: rgba(8, 9, 13, .92);
+  border: 1px solid var(--signal);
+  border-radius: 50%;
+  box-shadow: 0 0 70px var(--signal-soft);
+  transform: translate(-50%, -50%);
+}
+
+.constellation__core strong {
+  margin-block: .3rem;
+  font-size: 1.08rem;
+}
+
+.constellation__core span,
+.constellation__core small {
+  font-family: var(--mono-font);
+  font-size: .65rem;
+  letter-spacing: .08em;
+  color: var(--muted-on-dark);
+}
+
+.constellation__node {
+  position: absolute;
+  display: grid;
+  width: 160px;
+  min-height: 90px;
+  padding: 1.2rem 0 0 1.2rem;
+  text-decoration: none;
+  transform: translate3d(var(--node-x, 0), var(--node-y, 0), 0);
+  transition:
+    color .2s var(--ease),
+    border-color .2s var(--ease);
+}
+
+.constellation__node::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  content: "";
+  border: 2px solid var(--signal);
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px var(--signal-soft);
+  transform: translate(-50%, -50%);
+}
+
+.constellation__node span {
+  color: var(--muted-on-dark);
+  font-size: .75rem;
+}
+
+.constellation__node--tracksense {
+  /* SVG anchor: 225,145 in the 920:520 viewBox. */
+  top: 27.8846153846%;
+  left: 24.4565217391%;
+}
+
+.constellation__node--forebid {
+  /* SVG anchor: 700,145 in the 920:520 viewBox. */
+  top: 27.8846153846%;
+  left: 76.0869565217%;
+}
+
+.constellation__node--engram-pipeline {
+  /* SVG anchor: 690,378 in the 920:520 viewBox. */
+  top: 72.6923076923%;
+  left: 75%;
+}
+
+.constellation__concepts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.constellation__concepts section {
+  padding-top: 1rem;
+  color: var(--muted-on-dark);
+  border-top: 1px solid var(--line-dark);
+  transition:
+    color .2s var(--ease),
+    border-color .2s var(--ease);
+}
+
+.constellation__concepts section[data-active="true"] {
+  color: var(--ink-on-dark);
+  border-color: var(--signal);
+}
+
+.constellation__concepts h3 {
+  font-size: 1rem;
+  letter-spacing: -.01em;
+}
+
+.constellation__concepts p,
+.constellation__concepts small {
+  font-size: .75rem;
+}
+
+.constellation-fallback {
+  display: none;
+}

@@ -1,0 +1,22 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page_title }}</title>
+<meta name="description" content="{{ page_description }}">
+{% set canonical_base = (config.CANONICAL_BASE_URL or "").rstrip("/") %}
+{% set canonical = canonical_base ~ request.path if canonical_base else request.base_url %}
+{% set social_image = canonical_base ~ url_for('static', filename='images/brand/social-preview-placeholder.svg') if canonical_base else url_for('static', filename='images/brand/social-preview-placeholder.svg', _external=True) %}
+<link rel="canonical" href="{{ canonical }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_description }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ social_image }}">
+<meta property="og:image:alt" content="Anant Nitai Mehta — practical systems in AI and robotics">
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": person.name,
+  "homeLocation": person.location,
+  "url": config.CANONICAL_BASE_URL or request.url_root,
+  "sameAs": [person.github]
+}|tojson }}</script>

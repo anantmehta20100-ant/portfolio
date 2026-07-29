@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% include "partials/metadata.html" %}
+  <link rel="icon" href="{{ url_for('static', filename='images/brand/favicon.svg') }}" type="image/svg+xml">
+  {% for stylesheet in ["tokens.css", "base.css", "layout.css", "components.css", "dark.css", "editorial.css", "responsive.css"] %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ stylesheet) }}">
+  {% endfor %}
+</head>
+<body class="theme-{{ page_theme|default('dark') }}">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  {% include "partials/navigation.html" %}
+  <main id="main-content" tabindex="-1">{% block content %}{% endblock %}</main>
+  {% include "partials/footer.html" %}
+  <script src="{{ url_for('static', filename='js/navigation.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/cursor.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

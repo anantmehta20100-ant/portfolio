@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% from "components/media.html" import media_placeholder %}
+{% block content %}
+<article class="reading-shell research-page">
+  <header><p class="eyebrow">Research and technical writing</p><h1>{{ research.title }}</h1><p class="case-deck">{{ research.summary }}</p><span class="status-badge">{{ research.category }}</span></header>
+  {{ media_placeholder("TrackSense research report cover coming soon", "3 / 4") }}
+  <section><h2>About the report</h2><p>The CREST project report documents the prototype’s computer-vision architecture, risk-propagation reasoning, dataset engineering, testing, debugging, results, and limitations.</p></section>
+  <div class="action-row">
+    {% if report_available %}
+    <a class="button button-primary" href="/projects/tracksense/report">View Report</a>
+    <a class="button button-secondary" href="/projects/tracksense/report?download=1">Download PDF</a>
+    {% else %}
+    <span class="button button-disabled" aria-disabled="true">Report file awaiting placement</span>
+    {% endif %}
+    <a class="text-link" href="/projects/tracksense">Read the TrackSense case study →</a>
+  </div>
+</article>
+{% endblock %}

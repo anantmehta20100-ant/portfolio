@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="reading-shell contact-page">
+  <p class="eyebrow">Contact · {{ person.location }}</p>
+  <h1>Let’s discuss internships, technical projects, robotics, or collaboration.</h1>
+  <p>{{ person.name }}</p>
+  <div class="contact-actions">
+    <a class="button button-primary" href="mailto:{{ person.email }}">Email me</a>
+    <button class="button button-secondary" type="button" data-copy-email="{{ person.email }}">Copy email</button>
+    <a class="text-link" href="{{ person.github }}" target="_blank" rel="noreferrer">Open GitHub <span class="sr-only">(opens in a new tab)</span></a>
+  </div>
+  <p class="copy-status" aria-live="polite" data-copy-status></p>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/contact.js') }}" defer></script>{% endblock %}

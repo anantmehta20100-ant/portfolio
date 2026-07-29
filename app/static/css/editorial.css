@@ -1,0 +1,117 @@
+.theme-editorial {
+  color: var(--ink);
+  background: var(--paper);
+  /* custom-cursor palette: deep signal reads on the paper ground */
+  --cursor-color: var(--signal-on-paper);
+  --cursor-ring: rgba(111, 75, 195, .5);
+  --cursor-label: var(--paper);
+}
+
+.theme-editorial .site-header {
+  color: var(--ink);
+  background: rgba(242, 239, 232, .9);
+  border-color: var(--line-light);
+  backdrop-filter: blur(18px);
+}
+
+.theme-editorial .site-footer {
+  color: var(--muted-ink);
+  border-color: var(--line-light);
+}
+
+.theme-editorial :focus-visible {
+  outline-color: var(--signal-on-paper);
+}
+
+.theme-editorial .eyebrow,
+.theme-editorial .caption,
+.theme-editorial .case-meta {
+  color: var(--muted-ink);
+}
+
+.theme-editorial .text-link {
+  text-decoration-color: var(--signal-on-paper);
+}
+
+.case-hero {
+  padding-top: 9rem;
+}
+
+.case-hero h1 {
+  max-width: 12ch;
+  font-family: var(--editorial-font);
+  font-weight: 500;
+}
+
+/* these headings are full sentences, not short headlines */
+.research-page h1,
+.contact-page h1 {
+  font-size: clamp(1.75rem, 3.4vw, 3.1rem);
+}
+
+.case-deck {
+  font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+  line-height: 1.45;
+}
+
+.case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line-light);
+}
+
+.safety-note {
+  margin-top: 2rem;
+  padding: 1.4rem 0;
+  border-block: 1px solid var(--signal-on-paper);
+}
+
+.safety-note strong {
+  font-family: var(--mono-font);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.safety-note p {
+  margin-bottom: 0;
+}
+
+.theme-editorial .media-placeholder {
+  color: var(--muted-ink);
+  background-color: rgba(23, 25, 30, .025);
+}
+
+.market-figure svg {
+  width: 100%;
+}
+
+.chart-grid {
+  stroke: var(--line-light);
+}
+
+.theme-editorial .chart-line {
+  fill: none;
+  stroke: var(--signal-on-paper);
+  stroke-width: 3;
+}
+
+.theme-editorial .chart-points circle {
+  fill: var(--paper);
+  stroke: var(--signal-on-paper);
+  stroke-width: 3;
+}
+
+.theme-editorial .chart-points .chart-outlier {
+  stroke: #7a4b61;
+}
+
+.theme-editorial th {
+  font-family: var(--mono-font);
+  font-size: .72rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}

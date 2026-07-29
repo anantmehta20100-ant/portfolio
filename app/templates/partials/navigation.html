@@ -1,0 +1,20 @@
+<header class="site-header" data-site-header>
+  <a class="site-wordmark" href="/" aria-label="Anant Nitai Mehta, home">ANM</a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle>
+    <span>Menu</span>
+  </button>
+  {% set current_section = request.path %}
+  {% if request.path.startswith("/projects/") %}
+    {% set current_section = "/projects" %}
+  {% elif request.path.startswith("/experience/") %}
+    {% set current_section = "/experience" %}
+  {% endif %}
+  <nav id="primary-navigation" aria-label="Primary navigation" data-primary-navigation>
+    {% for item in navigation %}
+    <a href="{{ item.href }}" {% if current_section == item.href %}aria-current="page"{% endif %}>{{ item.label }}</a>
+    {% endfor %}
+    {% if request.path == "/" %}
+    <a class="nav-section-link" href="#featured-projects">Selected work</a>
+    {% endif %}
+  </nav>
+</header>

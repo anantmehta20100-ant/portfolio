@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Anant Nitai Mehta portfolio social preview placeholder</title>
+  <desc id="desc">A dark blueprint grid with a purple orbital systems mark and the portfolio headline.</desc>
+  <defs>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0V36" fill="none" stroke="#73d7e6" stroke-opacity=".08"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#08090d"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <ellipse cx="890" cy="315" rx="210" ry="126" fill="none" stroke="#a78bfa" stroke-opacity=".55"/>
+  <circle cx="890" cy="315" r="82" fill="#101218" stroke="#a78bfa"/>
+  <text x="84" y="120" fill="#a78bfa" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22">ANANT NITAI MEHTA</text>
+  <text x="84" y="245" fill="#f5f2ff" font-family="Avenir Next, Segoe UI, sans-serif" font-size="72" font-weight="600">Practical systems</text>
+  <text x="84" y="330" fill="#f5f2ff" font-family="Avenir Next, Segoe UI, sans-serif" font-size="72" font-weight="600">in AI and robotics.</text>
+</svg>

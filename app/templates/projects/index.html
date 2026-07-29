@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% from "components/ui.html" import project_preview %}
+{% block content %}
+<header class="index-hero shell"><p class="eyebrow">Projects</p><h1>Practical systems, documented honestly.</h1><p>Computer vision, autonomous-agent market context, and reviewable research pipelines.</p></header>
+<section class="shell project-list" aria-labelledby="project-index-heading"><h2 class="sr-only" id="project-index-heading">Project case studies</h2>{% for project in projects.values() %}{{ project_preview(project) }}{% endfor %}</section>
+{% endblock %}

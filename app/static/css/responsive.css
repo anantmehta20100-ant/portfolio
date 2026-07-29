@@ -1,0 +1,123 @@
+@media (max-width: 900px) {
+  :root {
+    --shell: min(100% - 32px, 760px);
+    --reading: min(100% - 32px, 700px);
+  }
+
+  .split-section,
+  .skills-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .site-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer > div:nth-child(2) {
+    justify-content: flex-start;
+  }
+
+  .site-footer p {
+    grid-column: auto;
+  }
+
+  .project-preview {
+    grid-template-columns: 1fr;
+    gap: .75rem;
+  }
+
+  .achievement-list {
+    grid-template-columns: 1fr;
+  }
+
+  .constellation__stage {
+    display: none;
+  }
+
+  .constellation__concepts {
+    position: static;
+    grid-template-columns: 1fr;
+  }
+
+  .constellation-fallback {
+    display: grid;
+  }
+
+  .constellation-fallback a {
+    display: grid;
+    gap: .4rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--line-dark);
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+    gap: var(--space-2);
+    padding-inline: 16px;
+  }
+
+  [data-site-header] [data-primary-navigation] {
+    display: grid;
+    grid-column: 1 / -1;
+    gap: 0;
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  [data-site-header] [data-primary-navigation] a {
+    padding: .85rem 0;
+  }
+
+  [data-site-header][data-navigation-enhanced="true"] .menu-toggle {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  [data-site-header][data-navigation-enhanced="true"] [data-primary-navigation] {
+    display: none;
+  }
+
+  [data-site-header][data-navigation-enhanced="true"] [data-primary-navigation][data-open="true"] {
+    display: grid;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 9rem;
+  }
+
+  .shell,
+  .reading-shell {
+    padding-block: var(--space-5);
+  }
+
+  .case-hero,
+  .contact-page,
+  .about-page,
+  .research-page {
+    padding-top: 7rem;
+  }
+
+  .architecture-flow,
+  .risk-chain {
+    display: grid;
+  }
+
+  .architecture-flow li:not(:last-child)::after,
+  .risk-chain li:not(:last-child)::after {
+    display: block;
+    margin: .7rem 0 0;
+    content: "↓";
+  }
+
+  th,
+  td {
+    min-width: 10rem;
+    padding-inline: .7rem;
+  }
+}

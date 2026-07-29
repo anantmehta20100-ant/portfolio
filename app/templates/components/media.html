@@ -1,0 +1,6 @@
+{% macro media_placeholder(label, ratio="16 / 9") -%}
+<figure class="media-placeholder" style="--media-ratio: {{ ratio }}">
+  <svg aria-hidden="true" viewBox="0 0 100 60"><path d="M10 48 34 26l16 14 13-10 27 18"/><circle cx="70" cy="18" r="5"/></svg>
+  <figcaption>{{ label }}</figcaption>
+</figure>
+{%- endmacro %}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="index-hero shell"><p class="eyebrow">Experience</p><h1>Engineering work with traceable decisions.</h1></header>
+<section class="shell split-section"><div><p class="eyebrow">{{ experience.dates }}</p><h2>{{ experience.role }} · {{ experience.company }}</h2><p>{{ experience.status }}</p></div><div><p>{{ experience.description }}</p><a class="text-link" href="/experience/engram">Read the full experience →</a></div></section>
+{% endblock %}

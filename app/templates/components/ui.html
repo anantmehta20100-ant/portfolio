@@ -1,0 +1,18 @@
+{% macro status_badge(status) -%}
+<span class="status-badge"><span aria-hidden="true"></span>{{ status }}</span>
+{%- endmacro %}
+
+{% macro technology_tags(items) -%}
+<ul class="tag-list" aria-label="Technologies">
+  {% for item in items %}<li>{{ item }}</li>{% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro project_preview(project) -%}
+<article class="project-preview">
+  <div class="project-preview__meta">{{ status_badge(project.status) }}</div>
+  <h3><a href="/projects/{{ project.slug }}">{{ project.name }}</a></h3>
+  <p>{{ project.description }}</p>
+  <span class="text-link" aria-hidden="true">Read case study →</span>
+</article>
+{%- endmacro %}

@@ -1,0 +1,13 @@
+{% macro architecture_diagram() -%}
+<ol class="architecture-flow" aria-label="TrackSense system architecture">
+  {% for step in ["Camera", "YOLO Detection", "Object Tracking", "Contact Monitor", "Risk Engine", "Flask API", "Live Dashboard"] %}
+  <li>{{ step }}</li>
+  {% endfor %}
+</ol>
+{%- endmacro %}
+
+{% macro risk_chain(items) -%}
+<ol class="risk-chain" aria-label="Illustrative possible relative-risk propagation chain">
+  {% for item in items %}<li>{{ item }}</li>{% endfor %}
+</ol>
+{%- endmacro %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% from "components/media.html" import media_placeholder %}
+{% block content %}
+<article class="reading-shell about-page">
+  <header><p class="eyebrow">About</p><h1>Building is how I learn.</h1></header>
+  {{ media_placeholder("Profile photo coming soon", "4 / 5") }}
+  <p>I’m a student developer at Bombay International School in Mumbai. Much of my interest in technology began through competitive robotics across WRO, FTC, and FRC environments.</p>
+  <p>I was drawn to the idea that technology is something people can actively shape, not only consume. That interest led from robotics into computer vision, machine learning, and complete product development.</p>
+  <p>I’m interested in many areas of technology but especially drawn to robotics and artificial intelligence. I’m looking for a hands-on internship where I can contribute directly to real engineering work, learn from experienced people, and take responsibility for meaningful projects.</p>
+  <section><h2>Education</h2><p>{{ person.education }}</p></section>
+</article>
+{% endblock %}

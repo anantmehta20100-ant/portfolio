@@ -1,0 +1,28 @@
+:root {
+  --void: #08090d;
+  --graphite: #101218;
+  --ink-on-dark: #f5f2ff;
+  --muted-on-dark: #aaa4b8;
+  --signal: #a78bfa;
+  --signal-on-paper: #6f4bc3;
+  --signal-soft: rgba(167, 139, 250, .14);
+  --cyan: #73d7e6;
+  --paper: #f2efe8;
+  --ink: #17191e;
+  --muted-ink: #5f6068;
+  --line-dark: rgba(245, 242, 255, .14);
+  --line-light: rgba(23, 25, 30, .16);
+  --display-font: "Avenir Next", "Segoe UI", sans-serif;
+  --body-font: "Avenir Next", "Segoe UI", sans-serif;
+  --mono-font: "SFMono-Regular", Consolas, monospace;
+  --editorial-font: "Iowan Old Style", Georgia, serif;
+  --space-1: .375rem;
+  --space-2: .75rem;
+  --space-3: 1.25rem;
+  --space-4: 2rem;
+  --space-5: 3.5rem;
+  --space-6: 6rem;
+  --shell: min(1180px, calc(100vw - 48px));
+  --reading: min(760px, calc(100vw - 48px));
+  --ease: cubic-bezier(.2, .8, .2, 1);
+}

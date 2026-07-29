@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% from "components/ui.html" import project_preview, technology_tags %}
+{% block content %}
+<section class="hero shell" id="hero" data-home-section>
+  <p class="eyebrow">{{ person.location }} · AI · Robotics</p>
+  <h1>{{ person.headline }}</h1>
+  <p class="hero-copy">{{ person.hero_copy }}</p>
+  <div class="action-row">
+    <a class="button button-primary" href="#featured-projects">Explore Projects</a>
+    <a class="button button-secondary" href="{{ person.github }}" target="_blank" rel="noreferrer">View GitHub <span class="sr-only">(opens in a new tab)</span></a>
+    <a class="text-link" href="#contact">Contact Me</a>
+    <span class="button button-disabled" aria-disabled="true">Resume — Coming Soon</span>
+  </div>
+</section>
+
+<section class="explorer shell" id="project-explorer" data-home-section aria-labelledby="explorer-heading">
+  <div class="section-heading"><p class="eyebrow">Connected work</p><h2 id="explorer-heading">A portfolio of practical systems</h2></div>
+  {% include "partials/constellation.html" %}
+</section>
+
+<section class="shell" id="featured-projects" data-home-section>
+  <div class="section-heading"><p class="eyebrow">Selected projects</p><h2>Built from research to working prototypes</h2></div>
+  <div class="project-list">{% for project in projects.values() %}{{ project_preview(project) }}{% endfor %}</div>
+</section>
+
+<section class="shell split-section" id="experience" data-home-section>
+  <div><p class="eyebrow">Experience</p><h2>{{ experience.role }} at {{ experience.company }}</h2><p>{{ experience.dates }} · {{ experience.status }}</p></div>
+  <div><p>{{ experience.description }}</p><a class="text-link" href="/experience/engram">Read the experience →</a></div>
+</section>
+
+<section class="shell split-section" id="research" data-home-section>
+  <div><p class="eyebrow">{{ research.category }}</p><h2>{{ research.title }}</h2></div>
+  <div><p>{{ research.summary }}</p><a class="text-link" href="/research">Read the report entry →</a></div>
+</section>
+
+<section class="shell" id="skills" data-home-section>
+  <div class="section-heading"><p class="eyebrow">Skills in context</p><h2>Tools used to build and debug real systems</h2></div>
+  <div class="skills-layout">{% for group in skill_groups %}<section><h3>{{ group.name }}</h3>{{ technology_tags(group["items"]) }}</section>{% endfor %}</div>
+</section>
+
+<section class="shell" id="leadership" data-home-section>
+  <div class="section-heading"><p class="eyebrow">Leadership and achievements</p><h2>Robotics, initiative, and school community</h2></div>
+  <ul class="achievement-list">{% for achievement in achievements %}<li>{{ achievement }}</li>{% endfor %}</ul>
+</section>
+
+<section class="shell split-section" id="about" data-home-section>
+  <div><p class="eyebrow">About</p><h2>Technology is something to shape, not only consume.</h2></div>
+  <div><p>I’m a student developer at Bombay International School in Mumbai. My path from competitive robotics led into computer vision, machine learning, and complete product development.</p><a class="text-link" href="/about">More about me →</a></div>
+</section>
+
+<section class="shell contact-band" id="contact" data-home-section>
+  <p class="eyebrow">Contact</p><h2>Let’s discuss internships, technical projects, robotics, or collaboration.</h2>
+  <div class="action-row"><a class="button button-primary" href="mailto:{{ person.email }}">Email me</a><a class="text-link" href="/contact">Contact details →</a></div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/constellation.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/section-tracker.js') }}" defer></script>
+{% endblock %}

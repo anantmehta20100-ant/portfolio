@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from "components/media.html" import media_placeholder %}
+{% from "components/ui.html" import technology_tags %}
+{% block content %}
+<article class="case-study">
+  <header class="case-hero reading-shell"><p class="eyebrow">Research automation</p><h1>{{ project.name }}</h1><p class="case-deck">{{ project.description }}</p></header>
+  <section class="reading-shell"><h2>Problem</h2><p>Manual, one-at-a-time public-source research is difficult to repeat, verify, and review consistently.</p></section>
+  <section class="reading-shell"><h2>Pipeline</h2><ol class="architecture-flow"><li>Public company sources</li><li>Seniority filtering</li><li>Structured research</li><li>Source verification</li><li>Human review</li><li>Re-runnable output</li></ol></section>
+  <section class="reading-shell"><h2>My contribution</h2><p>{{ project.contribution }}</p></section>
+  <section class="reading-shell"><h2>Responsible data handling</h2><ul><li>Public company, team, leadership, biography, and JSON API sources only</li><li>No login-gated or authenticated sources</li><li>No fabricated missing data</li><li>Original source links retained</li><li>Human review before acceptance</li></ul></section>
+  <section class="reading-shell"><h2>Mock output</h2>
+    <div class="table-wrap"><table><caption>Anonymized mock data — no real executive or company records are shown.</caption><thead><tr><th scope="col">Person</th><th scope="col">Organisation</th><th scope="col">Seniority signal</th><th scope="col">Source</th></tr></thead><tbody><tr><td>Executive A</td><td>Example Capital</td><td>Executive biography</td><td>Sample biography URL</td></tr><tr><td>Partner B</td><td>Example Capital</td><td>Leadership page</td><td>Sample biography URL</td></tr><tr><td>Managing Director C</td><td>Example Capital</td><td>Team page</td><td>Sample biography URL</td></tr></tbody></table></div>
+    {{ media_placeholder("Anonymized pipeline preview coming soon") }}
+  </section>
+  <section class="reading-shell"><h2>Impact</h2><p>{{ project.impact }}</p>{{ technology_tags(project.technologies) }}</section>
+</article>
+{% endblock %}

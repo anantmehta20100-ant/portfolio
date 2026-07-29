@@ -1,0 +1,11 @@
+<footer class="site-footer">
+  <div>
+    <strong>{{ person.name }}</strong>
+    <span>{{ person.location }}</span>
+  </div>
+  <div>
+    <a href="mailto:{{ person.email }}">{{ person.email }}</a>
+    <a href="{{ person.github }}" rel="noreferrer" target="_blank">GitHub <span class="sr-only">(opens in a new tab)</span></a>
+  </div>
+  <p>© {{ now().year }} {{ person.name }}. Built around real projects, documented honestly.</p>
+</footer>
