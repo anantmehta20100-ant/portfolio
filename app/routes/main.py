@@ -1,4 +1,14 @@
-from flask import Blueprint, Response, current_app, render_template, request
+from pathlib import Path
+
+from flask import (
+    Blueprint,
+    Response,
+    abort,
+    current_app,
+    render_template,
+    request,
+    send_from_directory,
+)
 
 from app.content.portfolio import (
     ACHIEVEMENTS,
@@ -8,7 +18,8 @@ from app.content.portfolio import (
     SKILL_GROUPS,
 )
 from app.content.projects import PROJECTS
-from app.routes import tracksense_report_available
+from app.content.publication import RESUME_PATH
+from app.routes import resume_available, tracksense_report_available
 
 bp = Blueprint("main", __name__)
 
@@ -63,6 +74,19 @@ def contact():
         page_title="Contact | Anant Nitai Mehta",
         page_description="Contact Anant Nitai Mehta about internships and collaboration.",
         page_theme="editorial",
+    )
+
+
+@bp.get("/resume")
+def resume():
+    if not resume_available():
+        abort(404)
+    document = Path(RESUME_PATH)
+    return send_from_directory(
+        Path(current_app.static_folder) / document.parent,
+        document.name,
+        as_attachment=request.args.get("download") == "1",
+        download_name=document.name,
     )
 
 

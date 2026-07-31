@@ -40,7 +40,8 @@ def test_template_context_includes_shared_portfolio_content(app):
     with app.test_request_context():
         assert (
             render_template_string(
-                "{{ person.name }}|{{ navigation|length }}|{{ resume_published }}"
+                "{{ person.name }}|{{ navigation|length }}|"
+                "{{ resume_published }}|{{ resume_available }}"
             )
-            == "Anant Nitai Mehta|6|False"
+            == "Anant Nitai Mehta|6|False|False"
         )

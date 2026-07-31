@@ -62,13 +62,13 @@ The View Report and Download PDF actions activate only when the real file exists
 
 ## Resume activation
 
-The resume is currently unpublished. To activate it later:
+The resume is currently unpublished. To activate it:
 
 1. Obtain approval for the exact PDF.
-2. Add it under `app/static/documents/`.
-3. Set `RESUME_PUBLISHED = True` and assign its explicit path in `app/content/publication.py`.
-4. Add and test a dedicated route that checks both the flag and file existence.
-5. Replace the disabled control only after the route tests pass.
+2. Save it as `app/static/documents/Anant_Nitai_Mehta_Resume.pdf`, or change `RESUME_PATH` in `app/content/publication.py` to match the filename you use.
+3. Set `RESUME_PUBLISHED = True` in `app/content/publication.py`.
+
+The `/resume` route and the homepage control are already wired and tested, so no template or routing change is needed. Both gates must agree: the flag alone will not expose a missing file, and a file alone will not publish without the flag. The route is deliberately kept out of `sitemap.xml`.
 
 ## Deployment
 

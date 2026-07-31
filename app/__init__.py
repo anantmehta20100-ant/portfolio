@@ -66,6 +66,12 @@ def create_app(test_config: dict | None = None) -> Flask:
             "navigation": NAVIGATION,
             "person": PERSON,
             "resume_published": app.config["RESUME_PUBLISHED"],
+            # templates gate on this, not the bare flag: the resume stays
+            # hidden until an approved file actually exists on disk
+            "resume_available": publication.resume_is_available(
+                app.static_folder,
+                published=app.config["RESUME_PUBLISHED"],
+            ),
         }
 
     app.jinja_env.globals["now"] = lambda: datetime.now(timezone.utc)
