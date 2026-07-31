@@ -4,21 +4,9 @@ from urllib.parse import urlsplit
 from xml.etree import ElementTree
 
 import pytest
+from conftest import REQUIRED_ROUTES
 
 from app import create_app
-
-REQUIRED_ROUTES = (
-    "/",
-    "/projects",
-    "/projects/tracksense",
-    "/projects/forebid",
-    "/projects/engram-pipeline",
-    "/experience",
-    "/experience/engram",
-    "/research",
-    "/about",
-    "/contact",
-)
 
 
 def metadata_content(document, property_name):

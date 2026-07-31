@@ -30,11 +30,9 @@ def _normalize_canonical_base_url(value: object) -> str:
         ) from error
 
     if (
-        parsed.scheme.lower() not in {"http", "https"}
-        or not parsed.netloc
+        parsed.scheme not in {"http", "https"}
         or not parsed.hostname
         or parsed.username is not None
-        or parsed.password is not None
         or parsed.path not in {"", "/"}
         or parsed.query
         or parsed.fragment
@@ -45,7 +43,7 @@ def _normalize_canonical_base_url(value: object) -> str:
             "query, fragment, or credentials"
         )
 
-    return f"{parsed.scheme.lower()}://{parsed.netloc.lower()}"
+    return f"{parsed.scheme}://{parsed.netloc.lower()}"
 
 
 def create_app(test_config: dict | None = None) -> Flask:

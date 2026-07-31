@@ -1,8 +1,29 @@
 from html.parser import HTMLParser
+from pathlib import Path
 
 import pytest
 
 from app import create_app
+
+ROOT = Path(__file__).parents[1]
+STATIC = ROOT / "app" / "static"
+
+# One declaration of the site's public pages; REQUIRED_ROUTES derives from it so
+# the two can never disagree. The sitemap's own list in app/routes/main.py stays
+# independent on purpose, or test_discovery's comparison would be tautological.
+EXPECTED_PAGE_THEMES = {
+    "/": "theme-dark",
+    "/projects": "theme-dark",
+    "/projects/tracksense": "theme-editorial",
+    "/projects/forebid": "theme-editorial",
+    "/projects/engram-pipeline": "theme-editorial",
+    "/experience": "theme-dark",
+    "/experience/engram": "theme-editorial",
+    "/research": "theme-editorial",
+    "/about": "theme-editorial",
+    "/contact": "theme-editorial",
+}
+REQUIRED_ROUTES = tuple(EXPECTED_PAGE_THEMES)
 
 VOID_ELEMENTS = {
     "area",
@@ -111,6 +132,18 @@ def parse_document(html):
     parser.feed(html)
     parser.close()
     return parser.root
+
+
+def section_with_heading(document, heading):
+    matches = [
+        section
+        for section in document.find_all("section")
+        if any(node.text == heading for node in section.find_all("h2"))
+    ]
+    assert len(matches) == 1, (
+        f"Expected one section headed {heading!r}, found {len(matches)}"
+    )
+    return matches[0]
 
 
 @pytest.fixture()

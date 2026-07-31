@@ -1,37 +1,12 @@
 import re
 
 import pytest
+from conftest import EXPECTED_PAGE_THEMES, REQUIRED_ROUTES, section_with_heading
 from flask import Flask
 
 from app import create_app
 from app.content.portfolio import PERSON
 from app.content.projects import PROJECTS
-
-REQUIRED_ROUTES = (
-    "/",
-    "/projects",
-    "/projects/tracksense",
-    "/projects/forebid",
-    "/projects/engram-pipeline",
-    "/experience",
-    "/experience/engram",
-    "/research",
-    "/about",
-    "/contact",
-)
-
-EXPECTED_PAGE_THEMES = {
-    "/": "theme-dark",
-    "/projects": "theme-dark",
-    "/projects/tracksense": "theme-editorial",
-    "/projects/forebid": "theme-editorial",
-    "/projects/engram-pipeline": "theme-editorial",
-    "/experience": "theme-dark",
-    "/experience/engram": "theme-editorial",
-    "/research": "theme-editorial",
-    "/about": "theme-editorial",
-    "/contact": "theme-editorial",
-}
 
 EXPECTED_PROJECT_LINKS = {
     f"/projects/{project['slug']}": project for project in PROJECTS.values()
@@ -42,18 +17,6 @@ SOCIAL_PREVIEW_URL = (
 EXTERNAL_REFERENCE_PATTERN = re.compile(
     r"(?:https?://|mailto:|tel:)[^\s\"'<>]+"
 )
-
-
-def section_with_heading(document, heading):
-    matches = [
-        section
-        for section in document.find_all("section")
-        if any(node.text == heading for node in section.find_all("h2"))
-    ]
-    assert len(matches) == 1, (
-        f"Expected one section headed {heading!r}, found {len(matches)}"
-    )
-    return matches[0]
 
 
 def rendered_values(document):

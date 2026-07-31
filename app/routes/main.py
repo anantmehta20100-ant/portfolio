@@ -8,7 +8,7 @@ from app.content.portfolio import (
     SKILL_GROUPS,
 )
 from app.content.projects import PROJECTS
-from app.content.publication import report_is_available
+from app.routes import tracksense_report_available
 
 bp = Blueprint("main", __name__)
 
@@ -37,10 +37,7 @@ def research():
     return render_template(
         "research.html",
         research=RESEARCH,
-        report_available=report_is_available(
-            current_app.static_folder,
-            published=current_app.config["TRACKSENSE_REPORT_PUBLISHED"],
-        ),
+        report_available=tracksense_report_available(),
         page_title="Research | Anant Nitai Mehta",
         page_description="Technical research and writing by Anant Nitai Mehta.",
         page_theme="editorial",

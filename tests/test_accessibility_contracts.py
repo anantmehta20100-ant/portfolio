@@ -1,21 +1,8 @@
 import re
 from itertools import pairwise
-from pathlib import Path
 
-ROOT = Path(__file__).parents[1]
-STATIC = ROOT / "app" / "static"
-REQUIRED_ROUTES = (
-    "/",
-    "/projects",
-    "/projects/tracksense",
-    "/projects/forebid",
-    "/projects/engram-pipeline",
-    "/experience",
-    "/experience/engram",
-    "/research",
-    "/about",
-    "/contact",
-)
+from conftest import REQUIRED_ROUTES, STATIC, section_with_heading
+
 PRIMARY_NAVIGATION = {
     "/": "Home",
     "/projects": "Projects",
@@ -47,18 +34,6 @@ def contrast_ratio(foreground, background):
         (luminance(foreground), luminance(background)), reverse=True
     )
     return (lighter + 0.05) / (darker + 0.05)
-
-
-def section_with_heading(document, heading):
-    matches = [
-        section
-        for section in document.find_all("section")
-        if any(node.text == heading for node in section.find_all("h2"))
-    ]
-    assert len(matches) == 1, (
-        f"Expected one section headed {heading!r}, found {len(matches)}"
-    )
-    return matches[0]
 
 
 def test_engram_mock_table_has_exact_caption_and_column_headers(

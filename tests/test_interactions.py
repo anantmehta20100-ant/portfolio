@@ -1,8 +1,7 @@
 import re
-from pathlib import Path
 
-ROOT = Path(__file__).parents[1]
-STATIC = ROOT / "app" / "static"
+from conftest import STATIC
+
 JS = STATIC / "js"
 
 

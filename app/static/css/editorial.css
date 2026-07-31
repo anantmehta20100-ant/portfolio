@@ -1,6 +1,4 @@
 .theme-editorial {
-  color: var(--ink);
-  background: var(--paper);
   /* custom-cursor palette: deep signal reads on the paper ground */
   --cursor-color: var(--signal-on-paper);
   --cursor-ring: rgba(111, 75, 195, .5);

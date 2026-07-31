@@ -10,7 +10,8 @@ from flask import (
 )
 
 from app.content.projects import PROJECTS
-from app.content.publication import TRACKSENSE_REPORT_PATH, report_is_available
+from app.content.publication import TRACKSENSE_REPORT_PATH
+from app.routes import tracksense_report_available
 
 bp = Blueprint("projects", __name__, url_prefix="/projects")
 
@@ -34,10 +35,7 @@ def tracksense():
     return render_template(
         "projects/tracksense.html",
         project=PROJECTS["tracksense"],
-        report_available=report_is_available(
-            current_app.static_folder,
-            published=current_app.config["TRACKSENSE_REPORT_PUBLISHED"],
-        ),
+        report_available=tracksense_report_available(),
         page_title="TrackSense Case Study | Anant Nitai Mehta",
         page_description=(
             "A technical case study of TrackSense, a prototype computer-vision "
@@ -77,10 +75,7 @@ def engram_pipeline():
 
 @bp.get("/tracksense/report")
 def tracksense_report():
-    if not report_is_available(
-        current_app.static_folder,
-        published=current_app.config["TRACKSENSE_REPORT_PUBLISHED"],
-    ):
+    if not tracksense_report_available():
         abort(404)
     report = Path(TRACKSENSE_REPORT_PATH)
     return send_from_directory(

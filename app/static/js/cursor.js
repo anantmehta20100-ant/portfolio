@@ -46,20 +46,16 @@
     }
   };
 
-  // interactive elements the ring should react to, and the label it shows
-  const VIEW_TARGET =
-    "a[href^='/projects/'], .constellation__node, .project-preview a, .tag-list";
+  // every node and preview link is an /projects/ anchor, so one selector covers them
+  const HOVER_TARGET = "a, button, .tag-list";
   const readCue = (element) => {
     const explicit = element.closest("[data-cursor-label]");
     if (explicit) return explicit.dataset.cursorLabel;
-    if (element.closest(".constellation__node, a[href^='/projects/'], .project-preview a")) {
-      return "View";
-    }
-    return "";
+    return element.closest("a[href^='/projects/']") ? "View" : "";
   };
 
   const onOver = (event) => {
-    const target = event.target.closest(VIEW_TARGET + ", a, button");
+    const target = event.target.closest(HOVER_TARGET);
     const editable = event.target.closest("input, textarea, [contenteditable]");
     document.body.classList.toggle("cursor-text", Boolean(editable));
 
