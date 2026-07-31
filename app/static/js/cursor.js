@@ -17,8 +17,9 @@
   label.className = "cursor-ring__label";
   ring.appendChild(label);
 
+  dot.classList.add("is-hidden");
+  ring.classList.add("is-hidden");
   document.body.append(dot, ring);
-  document.body.dataset.customCursor = "true";
 
   // dot tracks 1:1; ring eases toward the pointer a frame behind
   let pointerX = window.innerWidth / 2;
@@ -26,11 +27,27 @@
   let ringX = pointerX;
   let ringY = pointerY;
   let frame = 0;
+  let active = false;
+
+  // Until the pointer first moves the custom cursor has no real position, so
+  // the native one stays visible. Setting data-custom-cursor any earlier
+  // applies `cursor: none` while the dot and ring are still untransformed at
+  // the top-left corner, leaving the page with no pointer at all.
+  const activate = () => {
+    active = true;
+    ringX = pointerX;
+    ringY = pointerY;
+    ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+    dot.classList.remove("is-hidden");
+    ring.classList.remove("is-hidden");
+    document.body.dataset.customCursor = "true";
+  };
 
   const onMove = (event) => {
     pointerX = event.clientX;
     pointerY = event.clientY;
     dot.style.transform = `translate(${pointerX}px, ${pointerY}px)`;
+    if (!active) activate();
     if (!frame) frame = requestAnimationFrame(render);
   };
 
@@ -74,6 +91,7 @@
     ring.classList.add("is-hidden");
   };
   const onEnterWindow = () => {
+    if (!active) return;
     dot.classList.remove("is-hidden");
     ring.classList.remove("is-hidden");
   };

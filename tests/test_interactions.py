@@ -5,6 +5,23 @@ from conftest import STATIC
 JS = STATIC / "js"
 
 
+def test_custom_cursor_keeps_the_native_pointer_until_it_has_a_position():
+    source = (JS / "cursor.js").read_text()
+
+    # `cursor: none` must not apply before the dot and ring are positioned,
+    # or the page renders with no visible pointer at all until the mouse moves.
+    assert source.index('dot.classList.add("is-hidden")') < source.index(
+        "document.body.append(dot, ring)"
+    )
+    assert source.count('document.body.dataset.customCursor = "true"') == 1
+    assert source.index("const activate = () =>") < source.index(
+        'document.body.dataset.customCursor = "true"'
+    )
+    assert "if (!active) activate();" in source
+    # entering the window must not reveal an un-positioned cursor
+    assert re.search(r"onEnterWindow = \(\) => \{\s*if \(!active\) return;", source)
+
+
 def test_navigation_enhances_only_after_accessible_controller_is_ready():
     source = (JS / "navigation.js").read_text()
 
