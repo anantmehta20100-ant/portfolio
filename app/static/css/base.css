@@ -15,15 +15,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* background-color, not the background shorthand: the shorthand resets
+   background-image to none and out-specifies the theme layers in
+   dark.css, which is what silently dropped the blueprint grid. */
 body.theme-dark {
   color: var(--ink-on-dark);
-  background: var(--void);
+  background-color: var(--void);
   color-scheme: dark;
 }
 
 body.theme-editorial {
   color: var(--ink);
-  background: var(--paper);
+  background-color: var(--paper);
   color-scheme: light;
 }
 

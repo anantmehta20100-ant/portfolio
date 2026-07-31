@@ -84,6 +84,21 @@ def test_approved_visual_tokens_are_present():
     assert "Avenir Next" in tokens
 
 
+def test_theme_roots_do_not_reset_the_background_image_layer():
+    base = (STATIC / "css" / "base.css").read_text()
+    dark = (STATIC / "css" / "dark.css").read_text()
+
+    assert "background-image:" in css_declarations(dark, ".theme-dark")
+
+    for selector in ["body.theme-dark", "body.theme-editorial"]:
+        declarations = css_declarations(base, selector)
+        assert "background-color:" in declarations
+        assert "background:" not in declarations, (
+            f"{selector} must set background-color; the background shorthand "
+            "resets background-image and silently drops the theme layer"
+        )
+
+
 def test_required_media_directories_exist():
     for relative in [
         "images/profile",
