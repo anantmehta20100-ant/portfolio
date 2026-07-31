@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% from "components/diagrams.html" import architecture_diagram %}
 {% from "components/media.html" import media_placeholder %}
 {% from "components/ui.html" import technology_tags %}
 {% block content %}
 <article class="case-study">
   <header class="case-hero reading-shell"><p class="eyebrow">Research automation</p><h1>{{ project.name }}</h1><p class="case-deck">{{ project.description }}</p></header>
   <section class="reading-shell"><h2>Problem</h2><p>Manual, one-at-a-time public-source research is difficult to repeat, verify, and review consistently.</p></section>
-  <section class="reading-shell"><h2>Pipeline</h2><ol class="architecture-flow"><li>Public company sources</li><li>Seniority filtering</li><li>Structured research</li><li>Source verification</li><li>Human review</li><li>Re-runnable output</li></ol></section>
+  <section class="reading-shell"><h2>Pipeline</h2>{{ architecture_diagram(project.architecture, "Finance expert discovery pipeline") }}</section>
   <section class="reading-shell"><h2>My contribution</h2><p>{{ project.contribution }}</p></section>
   <section class="reading-shell"><h2>Responsible data handling</h2><ul><li>Public company, team, leadership, biography, and JSON API sources only</li><li>No login-gated or authenticated sources</li><li>No fabricated missing data</li><li>Original source links retained</li><li>Human review before acceptance</li></ul></section>
   <section class="reading-shell"><h2>Mock output</h2>

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "components/diagrams.html" import architecture_diagram %}
 {% from "components/media.html" import media_placeholder %}
 {% from "components/ui.html" import technology_tags, status_badge %}
 {% block content %}
@@ -21,7 +22,7 @@
     </figure>
   </section>
   <section class="reading-shell"><h2>Byzantine outlier filtering</h2><p>Outlier handling limits the influence of observations that diverge sharply from the trusted market context.</p></section>
-  <section class="reading-shell"><h2>Architecture</h2><ol class="architecture-flow"><li>AgentFacts inputs</li><li>Trust weighting</li><li>Outlier filtering</li><li>Seven signals</li><li>Fair-price snapshot</li></ol></section>
+  <section class="reading-shell"><h2>Architecture</h2>{{ architecture_diagram(project.architecture, "ForeBid snapshot architecture") }}</section>
   <section class="reading-shell"><h2>Current prototype</h2><ul>{% for item in project.shipped %}<li>{{ item }}</li>{% endfor %}</ul><a class="button button-primary" href="{{ project.live_demo }}" target="_blank" rel="noreferrer">Open live demo <span class="sr-only">(opens in a new tab)</span></a></section>
   <section class="reading-shell"><h2>Production roadmap</h2><p>These items are planned and are not presented as shipped functionality.</p><ul>{% for item in project.planned %}<li>{{ item }}</li>{% endfor %}</ul></section>
   <section class="reading-shell"><h2>Four-person collaboration</h2><p>ForeBid was created by a four-person team. I contributed as a core developer and co-creator.</p></section>

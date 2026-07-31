@@ -21,6 +21,15 @@ PROJECTS = {
             "GitHub",
         ],
         "test_count": 92,
+        "architecture": [
+            "Camera",
+            "YOLO Detection",
+            "Object Tracking",
+            "Contact Monitor",
+            "Risk Engine",
+            "Flask API",
+            "Live Dashboard",
+        ],
         "risk_chain": ["Nut butter jar", "Cutlery", "Bread", "Plate"],
         # The eight classes locked before data preparation, so detection,
         # contact logic, and dashboard could rely on stable class IDs.
@@ -80,6 +89,13 @@ PROJECTS = {
             "Trust-weighted aggregation",
             "Byzantine outlier detection",
         ],
+        "architecture": [
+            "AgentFacts inputs",
+            "Trust weighting",
+            "Outlier filtering",
+            "Seven signals",
+            "Fair-price snapshot",
+        ],
         "shipped": [
             "Live deployed frontend",
             "Snapshot endpoint",
@@ -106,6 +122,16 @@ PROJECTS = {
             "senior finance professionals from public company sources and "
             "converts the results into a clean, source-linked dataset for expert sourcing."
         ),
+        # Each step has a matching section on the Engram experience page; both
+        # pages render this list so they cannot describe the pipeline differently.
+        "architecture": [
+            "Public sources",
+            "Collection",
+            "Seniority filtering",
+            "Cleaning",
+            "Traceability",
+            "Human review",
+        ],
         "technologies": [
             "Python",
             "requests",

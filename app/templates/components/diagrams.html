@@ -1,8 +1,6 @@
-{% macro architecture_diagram() -%}
-<ol class="architecture-flow" aria-label="TrackSense system architecture">
-  {% for step in ["Camera", "YOLO Detection", "Object Tracking", "Contact Monitor", "Risk Engine", "Flask API", "Live Dashboard"] %}
-  <li>{{ step }}</li>
-  {% endfor %}
+{% macro architecture_diagram(steps, label) -%}
+<ol class="architecture-flow" aria-label="{{ label }}">
+  {% for step in steps %}<li>{{ step }}</li>{% endfor %}
 </ol>
 {%- endmacro %}
 

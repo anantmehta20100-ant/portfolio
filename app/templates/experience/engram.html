@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% from "components/diagrams.html" import architecture_diagram %}
 {% block content %}
 <article class="case-study">
   <header class="case-hero reading-shell"><p class="eyebrow">{{ experience.dates }} · {{ experience.status }}</p><h1>{{ experience.role }} at {{ experience.company }}</h1><p class="case-deck">{{ experience.description }}</p></header>
   <section class="reading-shell"><h2>Company overview</h2><p>{{ experience.description }}</p></section>
   <section class="reading-shell"><h2>Internship role</h2><p>I was one of three interns and continued contributing beyond the original internship period across multiple projects.</p></section>
   <section class="reading-shell"><h2>The sourcing problem</h2><p>Senior finance expert discovery required a workflow that could be repeated, inspected, and reviewed rather than completed one profile at a time.</p></section>
-  <section class="reading-shell"><h2>Pipeline architecture</h2><p class="eyebrow">{{ project.name }}</p><ol class="architecture-flow"><li>Public sources</li><li>Collection</li><li>Seniority filtering</li><li>Cleaning</li><li>Traceability</li><li>Human review</li></ol></section>
+  <section class="reading-shell"><h2>Pipeline architecture</h2><p class="eyebrow">{{ project.name }}</p>{{ architecture_diagram(project.architecture, "Finance expert discovery pipeline") }}</section>
   <section class="reading-shell"><h2>Public-source collection</h2><p>The workflow uses public company websites, team pages, leadership pages, executive biographies, and public JSON API endpoints.</p></section>
   <section class="reading-shell"><h2>Seniority filtering</h2><p>I designed the seniority-filtering logic and reviewed failure cases instead of accepting titles without context.</p></section>
   <section class="reading-shell"><h2>Data cleaning</h2><p>The pipeline converts heterogeneous public pages into a consistent structured dataset without fabricating missing values.</p></section>
