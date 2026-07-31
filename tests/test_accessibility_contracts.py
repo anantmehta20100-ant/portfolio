@@ -1,7 +1,12 @@
 import re
 from itertools import pairwise
 
-from conftest import REQUIRED_ROUTES, STATIC, section_with_heading
+from conftest import (
+    REQUIRED_ROUTES,
+    STATIC,
+    section_with_heading,
+    without_version,
+)
 
 PRIMARY_NAVIGATION = {
     "/": "Home",
@@ -72,9 +77,10 @@ def test_required_stylesheets_exist_and_are_loaded(client, parse_html):
         link.attrs["href"]
         for link in document.find_all("link", rel="stylesheet")
     }
+    unversioned = {without_version(href) for href in stylesheet_links}
     for stylesheet in styles:
         assert (STATIC / "css" / stylesheet).is_file()
-        assert f"/static/css/{stylesheet}" in stylesheet_links
+        assert f"/static/css/{stylesheet}" in unversioned
 
 
 def test_approved_visual_tokens_are_present():

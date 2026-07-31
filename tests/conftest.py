@@ -1,5 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit
 
 import pytest
 
@@ -132,6 +133,18 @@ def parse_document(html):
     parser.feed(html)
     parser.close()
     return parser.root
+
+
+def without_version(url):
+    # Static URLs carry a per-file ?v= cache-busting token. Assertions pin the
+    # asset's identity, so the token is stripped before comparing.
+    split = urlsplit(url)
+    query = "&".join(
+        part
+        for part in split.query.split("&")
+        if part and not part.startswith("v=")
+    )
+    return urlunsplit(split._replace(query=query))
 
 
 def section_with_heading(document, heading):

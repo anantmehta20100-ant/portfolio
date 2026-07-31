@@ -83,4 +83,7 @@ def tracksense_report():
         report.name,
         as_attachment=request.args.get("download") == "1",
         download_name="TrackSense_CREST_Report_Main.pdf",
+        # this URL never changes, so it must revalidate rather than inherit
+        # the long max-age that digest-versioned static assets rely on
+        max_age=0,
     )

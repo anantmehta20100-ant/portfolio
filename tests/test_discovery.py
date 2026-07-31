@@ -4,7 +4,7 @@ from urllib.parse import urlsplit
 from xml.etree import ElementTree
 
 import pytest
-from conftest import REQUIRED_ROUTES
+from conftest import REQUIRED_ROUTES, without_version
 
 from app import create_app
 
@@ -95,7 +95,7 @@ def test_required_pages_have_complete_canonical_and_open_graph_metadata(
         assert metadata_content(document, "og:title") == title
         assert metadata_content(document, "og:description") == description
         assert metadata_content(document, "og:url") == canonical
-        assert metadata_content(document, "og:image").endswith(
+        assert without_version(metadata_content(document, "og:image")).endswith(
             "/static/images/brand/social-preview-placeholder.svg"
         )
         assert metadata_content(document, "og:image:alt") == (
@@ -122,7 +122,7 @@ def test_social_preview_uses_configured_canonical_origin(parse_html):
         .get_data(as_text=True)
     )
 
-    assert metadata_content(document, "og:image") == (
+    assert without_version(metadata_content(document, "og:image")) == (
         "https://portfolio.example/static/images/brand/"
         "social-preview-placeholder.svg"
     )
@@ -153,7 +153,7 @@ def test_wsgi_loads_canonical_origin_from_environment(
     assert metadata_content(document, "og:url") == (
         "https://portfolio.example/projects"
     )
-    assert metadata_content(document, "og:image") == (
+    assert without_version(metadata_content(document, "og:image")) == (
         "https://portfolio.example/static/images/brand/"
         "social-preview-placeholder.svg"
     )
@@ -228,7 +228,7 @@ def test_social_preview_and_favicon_assets_resolve(client, parse_html):
     social_image = metadata_content(document, "og:image")
     favicon = document.find_one("link", rel="icon").attrs["href"]
 
-    assert social_image == (
+    assert without_version(social_image) == (
         "http://localhost/static/images/brand/social-preview-placeholder.svg"
     )
     social_response = client.get(urlsplit(social_image).path)

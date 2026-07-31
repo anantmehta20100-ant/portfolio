@@ -87,6 +87,7 @@ def resume():
         document.name,
         as_attachment=request.args.get("download") == "1",
         download_name=document.name,
+        max_age=0,
     )
 
 

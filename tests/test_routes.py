@@ -1,7 +1,12 @@
 import re
 
 import pytest
-from conftest import EXPECTED_PAGE_THEMES, REQUIRED_ROUTES, section_with_heading
+from conftest import (
+    EXPECTED_PAGE_THEMES,
+    REQUIRED_ROUTES,
+    section_with_heading,
+    without_version,
+)
 from flask import Flask
 
 from app import create_app
@@ -501,4 +506,9 @@ def test_public_pages_use_only_approved_external_references(client, parse_html):
         expected = base_references | {f"http://localhost{path}"}
         expected |= route_references.get(path, set())
 
-        assert rendered_external_references(document) == expected
+        found = {
+            without_version(reference)
+            for reference in rendered_external_references(document)
+        }
+
+        assert found == expected

@@ -84,6 +84,13 @@ credentials. A trailing slash is normalized automatically, and an invalid value
 stops application startup. Keep debug mode disabled. Serve static files through
 the platform or a reverse proxy in production.
 
+Static assets are cached for a year. Every `/static/` URL carries a `?v=` digest
+of that file's size and modification time, computed once at startup, so a deploy
+invalidates only the assets that actually changed. Restart the application after
+replacing a static file — the digests are not recomputed per request. The gated
+report and resume routes set `max-age=0` instead, because their URLs never
+change and they must revalidate.
+
 ## Privacy and credibility
 
 - Do not add real Engram dataset rows, identities, counts, private data, or confidential work details.
